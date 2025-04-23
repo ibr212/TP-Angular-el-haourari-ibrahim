@@ -1,0 +1,30 @@
+<div class="catalog-container">
+    <h2>Nos Produits</h2>
+    
+    <div *ngIf="isLoading" class="loading">
+      <p>Chargement des produits...</p>
+    </div>
+    
+    <div *ngIf="!isLoading" class="product-list">
+      <div *ngFor="let product of products" 
+           class="product-card"
+           [class.low-stock]="product.quantity < 10">
+        
+        <img [src]="'/' + product.imageUrl" [alt]="product.name">
+        <h3>{{ product.name }}</h3>
+        <p>{{ product.description }}</p>
+        <p>Prix: {{ product.price | currency:'EUR' }}</p>
+        <p [class.low-stock-text]="product.quantity < 10">
+          Stock: {{ product.quantity }}
+        </p>
+        
+        <button (click)="showDetails(product)">Voir détails</button>
+      </div>
+    </div>
+    
+    <app-product-details 
+  [product]="selectedProduct" 
+  (closeModal)="selectedProduct = null"
+  *ngIf="selectedProduct">
+</app-product-details>
+  </div>

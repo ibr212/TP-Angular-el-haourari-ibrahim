@@ -1,0 +1,52 @@
+<div class="container my-4">
+
+    <div class="mb-4">
+      <label for="adduser" class="form-label">Add User:</label>
+      <div class="input-group">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Enter user firstname"
+          id="adduser"
+          [(ngModel)]="currentUser.firstName"
+        />
+        <div class="input-group">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Enter user lastname"
+              id="adduser"
+              [(ngModel)]="currentUser.lastName"
+            />
+        <button class="btn btn-primary" (click)="addUserAction()">Add User</button>
+      </div>
+    </div>
+
+    <div class="mb-4">
+      <label for="deleteUser" class="form-label">Delete User:</label><br />
+      <button class="btn btn-danger" (click)="deleteUserAction()">Delete User</button>
+    </div>
+
+    <div class="table-responsive">
+      <table class="table table-striped table-bordered">
+        <thead class="table-dark">
+          <tr>
+            <th>id</th>
+            <th>User Name</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of users; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>{{ user.fullName }}</td>
+            <td>
+              <button class="btn btn-sm btn-outline-danger" (click)="deleteUserAction()">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+  </div>
+  
