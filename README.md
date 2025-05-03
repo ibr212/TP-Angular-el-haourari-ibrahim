@@ -10,10 +10,11 @@ To start a local development server, run:
 ```bash
 ng serve
 ```
-https://github.com/ibr212/TP-Angular-el-haourari-ibrahim/issues/4
+
 
 Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
+##screens
+![Image](https://github.com/user-attachments/assets/fc13ed25-5082-49e9-b1fd-876f620acd73)
 ## Code scaffolding
 
 Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
