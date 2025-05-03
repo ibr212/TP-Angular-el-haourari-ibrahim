@@ -1,7 +1,13 @@
 <<<<<<< HEAD
+# TP-Angular-el-haourari-ibrahim
+
+el haourari ibrahim
+
+ng add @angular/material
 # AppCours
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.1.
+
 
 ## Development server
 
@@ -13,9 +19,21 @@ ng serve
 
 
 Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+##old-screens
+![Image](https://github.com/user-attachments/assets/e2ecf500-83d6-4f4e-8b38-6b223144eca2)
+
+![Image](https://github.com/user-attachments/assets/32da35f0-a323-463f-af24-e17998bd1128)
+
+![Image](https://github.com/user-attachments/assets/110f86b9-e919-4d4a-9ee4-502885193689)
+
+
 ##screens
 ![Image](https://github.com/user-attachments/assets/fc13ed25-5082-49e9-b1fd-876f620acd73)
+
 ![Image](https://github.com/user-attachments/assets/7edad609-110f-468e-a169-3edf33cc9f1c)
+
+![Image](https://github.com/user-attachments/assets/3c2b0ecd-8741-4a02-bc47-5367c339cc1e)
+
 
 ## Code scaffolding
 
