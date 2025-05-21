@@ -1,3 +1,4 @@
+import { ShoppingCartItem } from "./ShoppingCartItem";
 class ShoppingCart {
     private itemsProduct: ShoppingCartItem[] = [];
     private total: number = 0;

@@ -1,4 +1,7 @@
-class ShoppingCartItem {
+import { Product } from "./Product";
+
+
+export class ShoppingCartItem {
     itemProduct: Product;
     quantity: number;
   

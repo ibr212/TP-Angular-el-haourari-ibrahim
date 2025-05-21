@@ -6,10 +6,13 @@ import { UsersComponent } from "./components/users/users.component";
 import { CatalogComponent } from './components/catalog/catalog.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { ToolbarOverviewExample } from './components/toolbar/toolbar.component';
+import { HomeComponent } from './components/home/home.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, MasterComponent, UsersComponent, ToolbarOverviewExample,MatToolbarModule, CatalogComponent],
+  standalone: true,
+  imports: [RouterOutlet, ReactiveFormsModule, MasterComponent, UsersComponent, ToolbarOverviewExample,MatToolbarModule, CatalogComponent, HomeComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

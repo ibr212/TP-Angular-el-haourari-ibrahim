@@ -32,11 +32,11 @@
 }*/
 export class Product {
     constructor(
-      public id: number,
-      public name: string,
-      public description: string,
-      public price: number,
+      public productID: number,
+      public productTitle: string,
+      public category: string,
+      public prouctPrice: number,
       public quantity: number,
-      public imageUrl?: string
+      public productImage?: string
     ) {}
   }

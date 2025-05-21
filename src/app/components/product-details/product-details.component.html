@@ -1,10 +1,10 @@
 <div class="overlay" (click)="close()" *ngIf="product">
   <div class="modal-content" (click)="$event.stopPropagation()">
-    <img [src]="'/' + product.imageUrl" [alt]="product.name">
+    <img [src]="'/' + product.productImage" [alt]="product.productTitle">
     <h1>Détails Produit</h1>
-    <h3>{{ product.name }}</h3>
-    <p>{{ product.description }}</p>
-    <p>Prix: {{ product.price | currency:'EUR' }}</p>
+    <h3>{{ product.productID }}</h3>
+    <p>{{ product.productTitle }}</p>
+    <p>Prix: {{ product.prouctPrice| currency:'EUR' }}</p>
     <p>Stock disponible: {{ product.quantity }}</p>
     <!--<button class="btn-close" (click)="close()">acheter</button>-->
   </div>

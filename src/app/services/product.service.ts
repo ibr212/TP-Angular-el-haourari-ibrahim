@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+/*import { Injectable } from '@angular/core';
 import { Product } from '../../../Models/Product';
 import { Observable, of } from 'rxjs';
 import { delay } from 'rxjs/operators';
@@ -34,5 +34,34 @@ export class ProductService {
   getAvailableProducts(): Observable<Product[]> {
     const availableProducts = this.mockProducts.filter(p => p.quantity > 0);
     return of(availableProducts).pipe(delay(500));
+  }
+}*/
+
+
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class ProductService {
+  private apiUrl = 'http://localhost:3000/api'; // URL de ton backend Express
+
+  constructor(private http: HttpClient) {}
+
+  // Obtenir la liste des produits
+  getProducts(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/products`);
+  }
+
+  // Obtenir le panier actuel
+  getCart(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/cart`);
+  }
+
+  // Mettre à jour le panier
+  updateCart(cart: any[]): Observable<any> {
+    return this.http.post(`${this.apiUrl}/cart`, cart);
   }
 }
