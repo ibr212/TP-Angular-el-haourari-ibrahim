@@ -1,0 +1,46 @@
+.home-container {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .hero {
+    background-image: url('/banner.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 100px 20px;
+    text-align: center;
+  }
+  
+  .hero .btn {
+    padding: 10px 20px;
+    background-color: #ff6600;
+    color: white;
+    border: none;
+    margin-top: 20px;
+    text-decoration: none;
+  }
+  
+  .categories, .featured-products {
+    margin-top: 50px;
+  }
+  
+  .category-grid, .product-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+  }
+  
+  .category-card, .product-card {
+    border: 1px solid #eee;
+    padding: 10px;
+    text-align: center;
+    width: 200px;
+  }
+  
+  .category-card img, .product-card img {
+    width: 100%;
+    height: auto;
+  }
+  

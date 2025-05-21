@@ -1,0 +1,24 @@
+<div class="catalog-container">
+  <h2>Nos Produits</h2>
+  
+  <div *ngIf="isLoading" class="loading">
+    <p>Chargement des produits...</p>
+  </div>
+
+  <div *ngIf="!isLoading" class="product-list">
+    <div *ngFor="let product of products" class="product-card">
+      <img [src]="'/' + product.productImage" [alt]="product.productTitle">
+      <h3>{{ product.productTitle }}</h3>
+      <p>Catégorie : {{ product.category }}</p>
+      <p>Prix : {{ product.prouctPrice }}</p>
+
+      <button (click)="showDetails(product)">Voir détails</button>
+    </div>
+  </div>
+
+  <app-product-details 
+    [product]="selectedProduct" 
+    (closeModal)="selectedProduct = null"
+    *ngIf="selectedProduct">
+  </app-product-details>
+</div>

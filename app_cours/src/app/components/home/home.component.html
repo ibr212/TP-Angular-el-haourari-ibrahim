@@ -1,0 +1,36 @@
+<br/>
+<div class="home-container">
+    <!-- Section Hero -->
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Bienvenue sur OKAD</h1>
+        <p>Découvrez nos dernières collections et offres exclusives</p>
+        <a routerLink="/catalog" class="btn" i18n>Voir le catalogue</a>
+      </div>
+    </section>
+  
+    <!-- Catégories -->
+    <section class="categories">
+      <h2>Nos catégories</h2>
+      <div class="category-grid">
+        <div class="category-card" *ngFor="let category of categories">
+          <img [src]="category.image" alt="{{ category.name }}" />
+          <h3>{{ category.name }}</h3>
+        </div>
+      </div>
+    </section>
+  
+    <!-- Produits populaires -->
+    <section class="featured-products">
+      <h2>Produits populaires</h2>
+      <div class="product-grid">
+        <div class="product-card" *ngFor="let product of featuredProducts">
+          <img [src]="product.image" alt="{{ product.name }}" />
+          <h3>{{ product.name }}</h3>
+          <p>{{ product.price }} €</p>
+          <button (click)="addToCart(product)">Ajouter au panier</button>
+        </div>
+      </div>
+    </section>
+  </div>
+  
