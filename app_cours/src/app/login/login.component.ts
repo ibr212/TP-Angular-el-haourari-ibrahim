@@ -3,14 +3,16 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-login',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule,CommonModule],
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  loginForm: FormGroup;
+  loginForm!: FormGroup;
   isSubmitting = false;
   errorMessage = '';
   hidePassword = true;
@@ -24,7 +26,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private router: Router
+    private router: Router,
+    private snackBar: MatSnackBar
   ) { }
 
   ngOnInit(): void {
@@ -44,7 +47,7 @@ export class LoginComponent implements OnInit {
     const savedUser = localStorage.getItem('currentUser') || sessionStorage.getItem('currentUser');
     if (savedUser) {
       // Utilisateur déjà connecté, rediriger
-      this.router.navigate(['/boutique']);
+      //this.router.navigate(['/home']);
     }
   }
 
@@ -104,23 +107,43 @@ export class LoginComponent implements OnInit {
     
     // Rediriger après un court délai
     setTimeout(() => {
-      this.router.navigate(['/boutique']);
+      this.router.navigate(['/home']);
     }, 1000);
   }
 
   private handleLoginError(): void {
     this.isSubmitting = false;
-    this.errorMessage = 'Email ou mot de passe incorrect.';
+    this.showErrorMessage('Email ou mot de passe incorrect.');
   }
 
   private generateMockToken(): string {
     return 'mock_token_' + Math.random().toString(36).substr(2, 9);
   }
 
-  private showSuccessMessage(message: string): void {
-    // Vous pouvez utiliser un service de notification ici
-    alert(message);
-  }
+ private showSuccessMessage(message: string): void {
+  this.snackBar.open(message, 'Fermer', {
+    duration: 3000,
+    horizontalPosition: 'center',
+    verticalPosition: 'top',
+    panelClass: ['success-snackbar']
+  });
+}
+  private showErrorMessage(message: string): void {
+  this.snackBar.open(message, 'Fermer', {
+    duration: 3000,
+    horizontalPosition: 'center',
+    verticalPosition: 'top',
+    panelClass: ['error-snackbar']
+  });
+}
+showInfoMessage(message: string): void {
+  this.snackBar.open(message, 'Fermer', {
+    duration: 3000,
+    horizontalPosition: 'center',
+    verticalPosition: 'top'
+  });
+}
+
 
   markFormGroupTouched(formGroup: FormGroup): void {
     Object.values(formGroup.controls).forEach(control => {
@@ -139,19 +162,19 @@ export class LoginComponent implements OnInit {
     }
 
     if (controlName === 'email') {
-      if (control.errors.required) {
+      if (control.errors['required']){
         return 'L\'email est requis';
       }
-      if (control.errors.email) {
+      if (control.errors['minlength'])  {
         return 'Veuillez entrer une adresse email valide';
       }
     }
 
     if (controlName === 'password') {
-      if (control.errors.required) {
+      if (control.errors['required']) {
         return 'Le mot de passe est requis';
       }
-      if (control.errors.minlength) {
+      if(control.errors['minlength']) {
         return 'Le mot de passe doit contenir au moins 6 caractères';
       }
     }
@@ -187,7 +210,7 @@ export class LoginComponent implements OnInit {
       this.showSuccessMessage(`Connexion réussie avec ${provider}!`);
       
       setTimeout(() => {
-        this.router.navigate(['/boutique']);
+        this.router.navigate(['/home']);
       }, 1000);
     }, 1000);
   }

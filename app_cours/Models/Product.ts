@@ -31,12 +31,26 @@
     }
 }*/
 export class Product {
-    constructor(
-      public productID: number,
-      public productTitle: string,
-      public category: string,
-      public prouctPrice: number,
-      public quantity: number,
-      public productImage?: string
-    ) {}
+  public productID: number;
+  public productTitle: string;
+  public category: string;
+  public productPrice: number;
+  public quantity: number;
+  public productImage?: string;
+
+  constructor(
+    productID: number,
+    productTitle: string,
+    productPrice: number,
+    category: string = '',
+    quantity: number = 1,
+    productImage?: string
+  ) {
+    this.productID = productID;
+    this.productTitle = productTitle;
+    this.productPrice = productPrice;
+    this.category = category;
+    this.quantity = quantity;
+    this.productImage = productImage;
   }
+}

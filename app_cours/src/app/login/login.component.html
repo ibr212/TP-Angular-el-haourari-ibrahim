@@ -2,11 +2,11 @@
 <div class="login-container">
   <div class="login-card">
     <h2 class="login-title">Connexion</h2>
-    
+
     <div *ngIf="errorMessage" class="error-message">
       {{ errorMessage }}
     </div>
-    
+
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
       <div class="form-group">
         <label for="email">Email</label>
@@ -15,12 +15,12 @@
           id="email" 
           formControlName="email" 
           placeholder="Votre adresse email"
-          [class.input-error]="loginForm.get('email').touched && loginForm.get('email').invalid">
-        <div class="error-text" *ngIf="loginForm.get('email').touched && loginForm.get('email').invalid">
+          [class.input-error]="loginForm.get('email')?.touched && loginForm.get('email')?.invalid">
+        <div class="error-text" *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.invalid">
           {{ getErrorMessage('email') }}
         </div>
       </div>
-      
+
       <div class="form-group">
         <label for="password">Mot de passe</label>
         <div class="password-input-container">
@@ -29,34 +29,37 @@
             id="password" 
             formControlName="password"
             placeholder="Votre mot de passe"
-            [class.input-error]="loginForm.get('password').touched && loginForm.get('password').invalid">
+            [class.input-error]="loginForm.get('password')?.touched && loginForm.get('password')?.invalid">
           <button type="button" class="toggle-password-btn" (click)="hidePassword = !hidePassword">
             <i class="material-icons">{{ hidePassword ? 'visibility_off' : 'visibility' }}</i>
           </button>
         </div>
-        <div class="error-text" *ngIf="loginForm.get('password').touched && loginForm.get('password').invalid">
+        <div class="error-text" *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.invalid">
           {{ getErrorMessage('password') }}
         </div>
       </div>
-      
+
       <div class="form-group remember-me">
         <input type="checkbox" id="rememberMe" formControlName="rememberMe">
         <label for="rememberMe">Se souvenir de moi</label>
       </div>
-      
+
       <button type="submit" class="login-button" [disabled]="isSubmitting">
         <span *ngIf="!isSubmitting">Se connecter</span>
         <span *ngIf="isSubmitting" class="spinner"></span>
       </button>
     </form>
-    
+
     <div class="login-actions">
-      <a href="#" class="forgot-password" (click)="$event.preventDefault(); alert('Fonctionnalité à implémenter')">Mot de passe oublié?</a>
+      <a href="#" class="forgot-password" (click)="showInfoMessage('Fonctionnalité à implémenter'); $event.preventDefault()">
+        Mot de passe oublié ?
+      </a>
       <div class="signup-link">
-        Pas encore de compte? <a href="#" (click)="$event.preventDefault(); alert('Redirection vers inscription')">S'inscrire</a>
+        Pas encore de compte ? 
+        <a href="#" (click)="showInfoMessage('Redirection vers inscription'); $event.preventDefault()">S'inscrire</a>
       </div>
     </div>
-    
+
     <!-- Comptes de test pour démo -->
     <div class="test-accounts">
       <p class="test-title">Comptes de test :</p>
@@ -66,15 +69,15 @@
         <button type="button" class="test-btn" (click)="fillTestAccount('customer')">Client</button>
       </div>
     </div>
-    
+
     <div class="social-login">
       <p class="social-login-title">Ou connectez-vous avec</p>
       <div class="social-buttons">
-        <button class="social-button google">
+        <button class="social-button google" (click)="loginWithGoogle()">
           <img src="assets/icons/google.svg" alt="Google">
           Google
         </button>
-        <button class="social-button facebook">
+        <button class="social-button facebook" (click)="loginWithFacebook()">
           <img src="assets/icons/facebook.svg" alt="Facebook">
           Facebook
         </button>

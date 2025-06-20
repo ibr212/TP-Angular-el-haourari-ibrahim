@@ -24,7 +24,7 @@ export class ShoppingCartItem {
     }
   
     displayProductItem(): void {
-      this.itemProduct.printProduct();
+     // this.itemProduct.printProduct();
       console.log(`Quantité : ${this.quantity}`);
     }
   }

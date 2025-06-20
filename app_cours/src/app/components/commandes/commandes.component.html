@@ -1,0 +1,18 @@
+<h2>Suivi des Commandes</h2>
+
+<div *ngIf="commandes.length === 0">Aucune commande trouvée.</div>
+
+<div *ngFor="let cmd of commandes" class="commande-block">
+  <h3>Commande #{{ cmd.id }} - {{ cmd.date }}</h3>
+  <p><strong>Statut :</strong> {{ cmd.statut }}</p>
+
+  <div *ngFor="let item of cmd.items" class="commande-card">
+    <mat-card>
+      <mat-card-title>{{ item.itemProduct.productTitle }}</mat-card-title>
+      <img [src]="'/' + item.itemProduct.productImage" alt="{{ item.itemProduct.productTitle }}" width="150">
+      <p>Catégorie : {{ item.itemProduct.category }}</p>
+      <p>Prix : {{ item.itemProduct.productPrice }} MAD</p>
+      <p>Quantité commandée : {{ item.quantity }}</p>
+    </mat-card>
+  </div>
+</div>

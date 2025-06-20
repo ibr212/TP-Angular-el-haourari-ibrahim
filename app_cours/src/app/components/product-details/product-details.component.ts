@@ -12,8 +12,15 @@ import { CommonModule } from '@angular/common';
 export class ProductDetailsComponent {
   @Input() product: Product | null = null;
   @Output() closeModal = new EventEmitter<void>();
+  @Output() ajouterAuPanier = new EventEmitter<Product>();
 
   close() {
     this.closeModal.emit();
+  }
+  acheter() {
+    if (this.product) {
+      this.ajouterAuPanier.emit(this.product);
+      this.close(); 
+    }
   }
 }

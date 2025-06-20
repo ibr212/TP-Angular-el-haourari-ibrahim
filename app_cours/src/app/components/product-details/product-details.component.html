@@ -1,11 +1,29 @@
 <div class="overlay" (click)="close()" *ngIf="product">
   <div class="modal-content" (click)="$event.stopPropagation()">
     <img [src]="'/' + product.productImage" [alt]="product.productTitle">
-    <h1>Détails Produit</h1>
-    <h3>{{ product.productID }}</h3>
-    <p>{{ product.productTitle }}</p>
-    <p>Prix: {{ product.prouctPrice| currency:'EUR' }}</p>
+    <h4>Détails Produit</h4>
+    <h6>{{ product.productID }}</h6>
+    <h3>{{ product.productTitle }}</h3>
+    <p>Prix:    {{    product.productPrice }}</p>
     <p>Stock disponible: {{ product.quantity }}</p>
     <!--<button class="btn-close" (click)="close()">acheter</button>-->
+    <button class="cssbuttons-io-button" (click)="acheter()">
+    acheter
+    <div class="icon">
+      <svg
+        height="24"
+        width="24"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path d="M0 0h24v24H0z" fill="none"></path>
+        <path
+          d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
+          fill="currentColor"
+        ></path>
+      </svg>
+    </div>
+  </button>
+    <!--<button class="btn-acheter" (click)="acheter()">acheter</button>-->
   </div>
 </div>

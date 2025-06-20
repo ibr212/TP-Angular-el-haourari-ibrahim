@@ -1,13 +1,33 @@
-<mat-toolbar>
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-      <mat-icon>menu</mat-icon>
+<mat-toolbar color="primary">
+  <button mat-icon-button (click)="toggleDetails()" aria-label="Toggle user info">
+    <mat-icon>menu</mat-icon>
+  </button>
+
+  <span>OKAD</span>
+  <span class="title-space"></span>
+
+  <button mat-button routerLink="/home" routerLinkActive="active">Home</button>
+  <button mat-button routerLink="/catalog" routerLinkActive="active">Catalog</button>
+  <button mat-button routerLink="/panier" routerLinkActive="active">Panier</button>
+  <button mat-button routerLink="/commandes" routerLinkActive="active">Commandes</button>
+
+  <span class="example-spacer"></span>
+
+  <ng-container *ngIf="currentUser">
+    <button mat-icon-button aria-label="User Info">
+      <mat-icon>account_circle</mat-icon>
     </button>
-    <span>OKAD</span>
-    <span class="example-spacer"></span>
-    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-      <mat-icon>favorite</mat-icon>
-    </button>
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-      <mat-icon>share</mat-icon>
-    </button>
-  </mat-toolbar>
+    <span class="user-name">{{ currentUser.name }}</span>
+    <button mat-button color="warn" (click)="logout()">Déconnexion</button>
+  </ng-container>
+</mat-toolbar>
+
+<!-- Détails utilisateur après clic -->
+<mat-card *ngIf="showDetails && currentUser" class="user-details-card">
+  <mat-card-title>Informations Utilisateur</mat-card-title>
+  <mat-card-content>
+    <p><strong>Nom :</strong> {{ currentUser.name }}</p>
+    <p><strong>Email :</strong> {{ currentUser.email }}</p>
+    <p><strong>Rôle :</strong> {{ currentUser.role }}</p>
+  </mat-card-content>
+</mat-card>

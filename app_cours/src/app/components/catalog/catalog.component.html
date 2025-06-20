@@ -1,3 +1,16 @@
+<div class="catalog-header">
+  <div class="search-container">
+  <mat-icon>search</mat-icon>
+  <input type="text" placeholder="Rechercher un produit..." [(ngModel)]="searchQuery" />
+</div>
+
+  <!-- Filtres -->
+ <button (click)="filterCategory('all')" [class.active]="isActive('all')">Tous</button>
+<button (click)="filterCategory('smarttv')" [class.active]="isActive('smarttv')">Smart TV</button>
+<button (click)="filterCategory('tablet')" [class.active]="isActive('tablet')">Tablette</button>
+<button (click)="filterCategory('phone')" [class.active]="isActive('phone')">Téléphone</button>
+
+</div>
 <div class="catalog-container">
   <h2>Nos Produits</h2>
   
@@ -6,19 +19,21 @@
   </div>
 
   <div *ngIf="!isLoading" class="product-list">
-    <div *ngFor="let product of products" class="product-card">
-      <img [src]="'/' + product.productImage" [alt]="product.productTitle">
-      <h3>{{ product.productTitle }}</h3>
-      <p>Catégorie : {{ product.category }}</p>
-      <p>Prix : {{ product.prouctPrice }}</p>
+    <div *ngFor="let product of filteredProducts()" class="product-card">
+  <img [src]="'/' + product.productImage" [alt]="product.productTitle">
+  <h3>{{ product.productTitle }}</h3>
+  <p>Catégorie : {{ product.category }}</p>
+  <p>Prix : {{ product.productPrice }}</p>
 
-      <button (click)="showDetails(product)">Voir détails</button>
-    </div>
+  <button (click)="showDetails(product)">Voir détails</button>
+</div>
+
   </div>
 
   <app-product-details 
     [product]="selectedProduct" 
     (closeModal)="selectedProduct = null"
-    *ngIf="selectedProduct">
+    *ngIf="selectedProduct"
+    (ajouterAuPanier)="ajouterProduitAuPanier($event)">
   </app-product-details>
 </div>

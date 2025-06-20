@@ -8,18 +8,36 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import { ToolbarOverviewExample } from './components/toolbar/toolbar.component';
 import { HomeComponent } from './components/home/home.component';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { Router, NavigationEnd } from '@angular/router';
+import { filter } from 'rxjs/operators';
+import { CommonModule } from '@angular/common';
+import { CommandesComponent } from '../app/components/commandes/commandes.component'
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, ReactiveFormsModule, MasterComponent, UsersComponent, ToolbarOverviewExample,MatToolbarModule, CatalogComponent, HomeComponent],
+  imports: [RouterOutlet,CommonModule, ReactiveFormsModule, CommandesComponent, MasterComponent,MatSnackBarModule, ShoppingCartComponent, UsersComponent, ToolbarOverviewExample,MatToolbarModule, CatalogComponent, HomeComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrls: ['./app.component.css']
+
 })
 export class AppComponent {
-  title = 'Master Devops et Cloud Computing !';
+   showToolbar = true;
+  
+  constructor(public router: Router) { 
+    // Log initial
+    console.log('Initial URL:', this.router.url);
+    console.log('Initial showToolbar:', this.showToolbar);
+    
+    this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe((event: NavigationEnd) => {
+        console.log('Navigation ended at:', event.urlAfterRedirects);
+        this.showToolbar = event.urlAfterRedirects !== '/login';
+        console.log('showToolbar after navigation:', this.showToolbar);
+      });
+  
 
-  welcome() : void {
-    alert(this.title + ",Bienvenue parmi nous !");
-  }
+    }
 }
